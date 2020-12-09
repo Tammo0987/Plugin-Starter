@@ -1,7 +1,5 @@
-package com.github.plugin.model.dependency;
+package com.github.plugin.model.dependency
 
-public enum DependencyScope {
-    COMPILE,
-    PROVIDED,
-    TESTING
+enum class DependencyScope {
+    COMPILE, PROVIDED, TESTING
 }
