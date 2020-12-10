@@ -1,10 +1,8 @@
 package com.github.plugin.service
 
+import com.github.plugin.factory.BuildToolGenerateStepFactory
 import com.github.plugin.model.Plugin
-import com.github.plugin.model.PluginMetadata
-import com.github.plugin.model.build.BuildTool
 import com.github.plugin.model.pipeline.Pipeline
-import com.github.plugin.service.step.build.MavenPomGenerateStep
 import com.github.plugin.service.step.io.DirectoryCreationStep
 
 class PluginGenerateService {
@@ -16,7 +14,7 @@ class PluginGenerateService {
         val pipeline = Pipeline()
 
         pipeline.appendStep(DirectoryCreationStep(plugin.metadata.name))
-        pipeline.appendStep(MavenPomGenerateStep())
+        pipeline.appendStep(BuildToolGenerateStepFactory.create(plugin.buildTool))
 
         return pipeline
     }
