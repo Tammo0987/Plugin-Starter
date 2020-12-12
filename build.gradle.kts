@@ -10,11 +10,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
     jcenter()
-
-    maven {
-        name = "jcenter"
-        url = uri("https://jcenter.bintray.com")
-    }
 }
 
 dependencies {
