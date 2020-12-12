@@ -1,6 +1,8 @@
 package com.github.plugin.service.step.build.gradle
 
 import com.github.plugin.model.Plugin
+import com.github.plugin.model.dependency.Dependency
+import com.github.plugin.model.dependency.DependencyScope
 import com.github.plugin.model.pipeline.Step
 import com.github.plugin.service.step.io.FileCreationStep
 import com.squareup.kotlinpoet.CodeBlock
@@ -65,7 +67,33 @@ class GradleBuildGenerateStep : Step() {
                 lineBreak() +
                 repositoryBlock +
                 lineBreak() +
+                generateDependencies(plugin.dependencies) +
+                lineBreak() +
                 kotlinCompileTask
+    }
+
+    private fun generateDependencies(dependencies: List<Dependency>): String {
+        val dependencyCodeBlock = CodeBlock.builder()
+
+        dependencies.map { mapDependency(it) }.forEach { dependencyCodeBlock.addStatement(it) }
+
+        val dependencyBlock = dependencyCodeBlock.build()
+
+        return CodeBlock.builder()
+            .beginControlFlow("dependencies")
+            .add(dependencyBlock)
+            .endControlFlow()
+            .build()
+            .toString()
+    }
+
+    private fun mapDependency(dependency: Dependency): String {
+        val scope = when (dependency.scope) {
+            DependencyScope.COMPILE -> "implementation"
+            DependencyScope.PROVIDED -> "compileOnly"
+            DependencyScope.TESTING -> "testCompile"
+        }
+        return "${scope}(\"${dependency.group}:${dependency.artifact}:${dependency.version}\")"
     }
 
     private fun generateSettingsFileContent(plugin: Plugin): String {
