@@ -13,8 +13,15 @@ class PluginGenerateService {
     private fun mapPluginToPipeline(plugin: Plugin): Pipeline {
         val pipeline = Pipeline()
 
-        pipeline.appendStep(DirectoryCreationStep(plugin.metadata.name))
-        pipeline.appendStep(BuildToolGenerateStepFactory.create(plugin.buildTool))
+        val name = plugin.metadata.name
+
+        val steps = listOf(
+            DirectoryCreationStep(name),
+            BuildToolGenerateStepFactory.createBuildSettingsStep(plugin.buildTool),
+            BuildToolGenerateStepFactory.createBuildStructureStep(plugin.buildTool)
+        )
+
+        pipeline.appendSteps(steps)
 
         return pipeline
     }

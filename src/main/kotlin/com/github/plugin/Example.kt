@@ -13,7 +13,7 @@ fun main() {
     val plugin =
         Plugin(
             metadata,
-            BuildTool.MAVEN,
+            BuildTool.GRADLE,
             listOf(Repository("jcenter", "https://jcenter.bintray.com")),
             listOf(Dependency("de.tammo", "test", "1.0", DependencyScope.COMPILE))
         )

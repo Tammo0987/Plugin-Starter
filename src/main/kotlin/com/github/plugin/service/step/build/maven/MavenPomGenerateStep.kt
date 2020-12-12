@@ -1,4 +1,4 @@
-package com.github.plugin.service.step.build
+package com.github.plugin.service.step.build.maven
 
 import com.github.plugin.model.Plugin
 import com.github.plugin.model.dependency.Dependency

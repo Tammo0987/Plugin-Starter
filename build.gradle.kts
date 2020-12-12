@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation("org.redundent:kotlin-xml-builder:1.7.2")
+    implementation("com.squareup:kotlinpoet:1.7.2")
 }
 
 tasks.withType<KotlinCompile> {

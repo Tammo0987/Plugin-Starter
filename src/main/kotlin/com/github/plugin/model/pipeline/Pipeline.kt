@@ -8,6 +8,6 @@ class Pipeline {
 
     fun execute(plugin: Plugin) = this.steps.forEach { it.process(plugin) }
 
-    fun appendStep(step: Step) = this.steps.add(step)
+    fun appendSteps(steps: List<Step>) = steps.forEach { this.steps.add(it) }
 
 }
