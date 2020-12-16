@@ -7,6 +7,12 @@ import com.github.plugin.model.repository.Repository
 data class Plugin(
     val metadata: PluginMetadata,
     val buildTool: BuildTool,
-    val repositories: List<Repository>,
-    val dependencies: List<Dependency>
-)
+    val repositories: MutableList<Repository>,
+    val dependencies: MutableList<Dependency>
+) {
+
+    fun addRepository(repository: Repository) = this.repositories.add(repository)
+
+    fun addDependency(dependency: Dependency) = this.dependencies.add(dependency)
+
+}

@@ -4,6 +4,7 @@ import com.github.plugin.model.Plugin
 import com.github.plugin.model.dependency.Dependency
 import com.github.plugin.model.dependency.DependencyScope
 import com.github.plugin.model.pipeline.Step
+import com.github.plugin.model.repository.Repository
 import com.github.plugin.service.step.io.FileCreationStep
 import com.squareup.kotlinpoet.CodeBlock
 import kotlin.io.path.ExperimentalPathApi
@@ -24,14 +25,9 @@ class GradleBuildGenerateStep : Step() {
     }
 
     private fun generateBuildFileContent(plugin: Plugin): String {
-        val kotlinCompileImport = "import org.jetbrains.kotlin.gradle.tasks.KotlinCompile"
-
-        val kotlinVersion = "1.4.21"
-        val kotlinPlugin = "kotlin(\"jvm\") version \"${kotlinVersion}\""
-
         val pluginBlock = CodeBlock.builder()
             .beginControlFlow("plugins")
-            .addStatement(kotlinPlugin)
+            .addStatement("java")
             .endControlFlow()
             .build()
             .toString()
@@ -41,35 +37,38 @@ class GradleBuildGenerateStep : Step() {
 
         val mavenCentral = "mavenCentral()"
 
-        val repositoryBlock = CodeBlock.builder()
+        val repositories = CodeBlock.builder()
             .beginControlFlow("repositories")
             .addStatement(mavenCentral)
+
+        generateRepositories(plugin.repositories).forEach { repositories.add(it) }
+
+        val repositoryBlock = repositories
             .endControlFlow()
             .build()
             .toString()
 
-        val kotlinTarget = "kotlinOptions.jvmTarget = \"1.8\""
-
-        val kotlinCompileTask = CodeBlock.builder()
-            .beginControlFlow("tasks.withType<KotlinCompile>")
-            .addStatement(kotlinTarget)
-            .endControlFlow()
-            .build()
-            .toString()
-
-        return kotlinCompileImport +
-                lineBreak() +
-                lineBreak() +
-                pluginBlock +
+        return pluginBlock +
                 lineBreak() +
                 group +
                 version +
                 lineBreak() +
                 repositoryBlock +
                 lineBreak() +
-                generateDependencies(plugin.dependencies) +
-                lineBreak() +
-                kotlinCompileTask
+                generateDependencies(plugin.dependencies)
+    }
+
+    private fun generateRepositories(repositories: List<Repository>): List<CodeBlock> {
+        return repositories.map { mapRepositoryToCodeBlock(it) }
+    }
+
+    private fun mapRepositoryToCodeBlock(repository: Repository): CodeBlock {
+        return CodeBlock.builder()
+            .beginControlFlow("maven")
+            .addStatement("name = \"${repository.id}\"")
+            .addStatement("url = uri(\"${repository.url}\")")
+            .endControlFlow()
+            .build()
     }
 
     private fun generateDependencies(dependencies: List<Dependency>): String {

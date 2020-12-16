@@ -14,8 +14,8 @@ fun main() {
         Plugin(
             metadata,
             BuildTool.GRADLE,
-            listOf(Repository("jcenter", "https://jcenter.bintray.com")),
-            listOf(Dependency("de.tammo", "test", "1.0", DependencyScope.COMPILE))
+            mutableListOf(Repository("jcenter", "https://jcenter.bintray.com")),
+            mutableListOf(Dependency("de.tammo", "test", "1.0", DependencyScope.COMPILE))
         )
 
     PluginGenerateService().generate(plugin)

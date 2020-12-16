@@ -11,7 +11,7 @@ class GradleStructureGenerateStep : Step() {
         val pipeline = Pipeline()
         val name = plugin.metadata.name
 
-        val directories = listOf("main/kotlin", "main/resources", "test/kotlin", "test/resources")
+        val directories = listOf("main/java", "main/resources", "test/java", "test/resources")
         val steps = directories.map { "${name}/src/${it}" }.map { DirectoryCreationStep(it) }
 
         pipeline.appendSteps(steps)
