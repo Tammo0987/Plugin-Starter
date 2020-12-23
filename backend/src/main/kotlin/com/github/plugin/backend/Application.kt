@@ -1,6 +1,7 @@
 package com.github.plugin.backend
 
 import io.ktor.application.*
+import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -12,6 +13,8 @@ fun main() {
 }
 
 fun Application.module() {
+    install(DefaultHeaders)
+    install(Compression)
     install(Routing) {
         get("/") {
             call.respondText("Hello World", ContentType.Text.Plain)
