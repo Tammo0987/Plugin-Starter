@@ -1,11 +1,11 @@
-package com.github.plugin.service.step.build.maven
+package com.github.plugin.service.step.build
 
 import com.github.plugin.model.Plugin
 import com.github.plugin.model.pipeline.Pipeline
 import com.github.plugin.model.pipeline.Step
 import com.github.plugin.service.step.io.DirectoryCreationStep
 
-class MavenStructureGenerateStep : Step() {
+class StructureGenerateStep : Step() {
 
     override fun process(plugin: Plugin) {
         val pipeline = Pipeline()
