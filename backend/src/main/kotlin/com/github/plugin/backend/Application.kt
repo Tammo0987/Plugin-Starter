@@ -1,9 +1,9 @@
 package com.github.plugin.backend
 
+import com.github.plugin.backend.route.generate
 import io.ktor.application.*
 import io.ktor.features.*
-import io.ktor.http.*
-import io.ktor.response.*
+import io.ktor.jackson.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -15,10 +15,12 @@ fun main() {
 fun Application.module() {
     install(DefaultHeaders)
     install(Compression)
-    install(ContentNegotiation)
+
+    install(ContentNegotiation) {
+        jackson()
+    }
+
     install(Routing) {
-        get("/") {
-            call.respondText("Hello World", ContentType.Text.Plain)
-        }
+        generate()
     }
 }
