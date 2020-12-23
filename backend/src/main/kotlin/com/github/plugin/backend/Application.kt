@@ -9,6 +9,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main() {
+    println("Moin")
     embeddedServer(Netty, module = Application::module).start()
 }
 
