@@ -9,6 +9,15 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    val ktorVersion = "1.5.0"
+
+    implementation("io.ktor:ktor-server-core:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty:$ktorVersion")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
 }
 
 tasks.withType<KotlinCompile> {

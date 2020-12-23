@@ -8,6 +8,10 @@
 /build/
 .gradle/
 
+generator/build/
+
+backend/build/
+
 # Testing
 /plugin/
 /name/
