@@ -17,8 +17,9 @@ class PluginGenerateService {
 
         val steps = listOf(
             DirectoryCreationStep(name),
-            BuildToolGenerateStepFactory.createBuildSettingsStep(plugin.buildTool),
-            BuildToolGenerateStepFactory.createBuildStructureStep(plugin.buildTool)
+            BuildToolGenerateStepFactory.createBuildStructureStep(plugin.buildTool),
+            plugin.api.step,
+            BuildToolGenerateStepFactory.createBuildSettingsStep(plugin.buildTool)
         )
 
         pipeline.appendSteps(steps)
