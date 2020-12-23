@@ -15,6 +15,7 @@ fun main() {
 fun Application.module() {
     install(DefaultHeaders)
     install(Compression)
+    install(ContentNegotiation)
     install(Routing) {
         get("/") {
             call.respondText("Hello World", ContentType.Text.Plain)
