@@ -1,5 +1,5 @@
 # Backend Module
 
-description...
+This module of the Plugin-Starter is the backend for generating zip files as a rest service.
 
-POST /generate -> ZIP File
+For providing the zip files, the project is using ktor as framework.

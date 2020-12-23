@@ -12,3 +12,5 @@ Planned features are:
 + Templates
 + Common dependencies
 + Build Tool support
++ Website for generating
++ Command line interface
