@@ -20,7 +20,10 @@ dependencies {
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-jackson:$ktorVersion")
+
     implementation("ch.qos.logback:logback-classic:1.2.3")
+
+    implementation("net.lingala.zip4j:zip4j:2.6.4")
 }
 
 tasks.withType<KotlinCompile> {

@@ -3,7 +3,9 @@ package com.github.plugin.backend
 import com.github.plugin.backend.route.generate
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.http.*
 import io.ktor.jackson.*
+import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -22,5 +24,11 @@ fun Application.module() {
 
     install(Routing) {
         generate()
+    }
+
+    install(StatusPages) {
+        exception<Throwable> {
+            call.respond(HttpStatusCode.InternalServerError)
+        }
     }
 }
