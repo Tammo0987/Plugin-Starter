@@ -9,16 +9,17 @@ import org.redundent.kotlin.xml.Node
 import org.redundent.kotlin.xml.PrintOptions
 import org.redundent.kotlin.xml.XmlVersion
 import org.redundent.kotlin.xml.xml
+import java.nio.file.Path
 import kotlin.io.path.ExperimentalPathApi
 
 class MavenPomGenerateStep : Step() {
 
     @ExperimentalPathApi
-    override fun process(plugin: Plugin) {
+    override fun process(plugin: Plugin, workingDirectory: Path) {
         FileCreationStep(
             "${plugin.metadata.name}/pom.xml",
             this.generatePom(plugin).toByteArray(Charsets.UTF_8)
-        ).process(plugin)
+        ).process(plugin, workingDirectory)
     }
 
     private fun generatePom(plugin: Plugin): String {

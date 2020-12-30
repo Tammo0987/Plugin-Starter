@@ -7,21 +7,22 @@ import com.github.plugin.generator.model.pipeline.Step
 import com.github.plugin.generator.model.repository.Repository
 import com.github.plugin.generator.service.step.io.FileCreationStep
 import com.squareup.kotlinpoet.CodeBlock
+import java.nio.file.Path
 import kotlin.io.path.ExperimentalPathApi
 
 class GradleBuildGenerateStep : Step() {
 
     @ExperimentalPathApi
-    override fun process(plugin: Plugin) {
+    override fun process(plugin: Plugin, workingDirectory: Path) {
         FileCreationStep(
             "${plugin.metadata.name}/build.gradle.kts",
             this.generateBuildFileContent(plugin).toByteArray()
-        ).process(plugin)
+        ).process(plugin, workingDirectory)
 
         FileCreationStep(
             "${plugin.metadata.name}/settings.gradle.kts",
             this.generateSettingsFileContent(plugin).toByteArray()
-        ).process(plugin)
+        ).process(plugin, workingDirectory)
     }
 
     private fun generateBuildFileContent(plugin: Plugin): String {

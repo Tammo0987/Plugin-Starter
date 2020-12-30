@@ -4,6 +4,6 @@ data class PluginMetadata(
     val name: String,
     val group: String,
     val version: String,
-    val author: String?,
+    val authors: List<String>,
     val description: String?
 )

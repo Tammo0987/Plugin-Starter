@@ -8,7 +8,7 @@ import com.github.plugin.generator.service.PluginGenerateService
 import java.nio.file.Paths
 
 fun main() {
-    val metadata = PluginMetadata("name", "de.tammo", "1.0", "Tammo", "Example Project")
+    val metadata = PluginMetadata("test", "de.tammo", "1.0", listOf("Tammo", "Paul"), "Example Project")
     val plugin =
         Plugin(
             metadata,

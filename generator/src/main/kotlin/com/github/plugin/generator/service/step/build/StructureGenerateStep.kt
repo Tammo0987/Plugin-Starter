@@ -4,10 +4,11 @@ import com.github.plugin.generator.model.Plugin
 import com.github.plugin.generator.model.pipeline.Pipeline
 import com.github.plugin.generator.model.pipeline.Step
 import com.github.plugin.generator.service.step.io.DirectoryCreationStep
+import java.nio.file.Path
 
 class StructureGenerateStep : Step() {
 
-    override fun process(plugin: Plugin) {
+    override fun process(plugin: Plugin, workingDirectory: Path) {
         val pipeline = Pipeline()
         val name = plugin.metadata.name
 
@@ -16,7 +17,7 @@ class StructureGenerateStep : Step() {
 
         pipeline.appendSteps(steps)
 
-        pipeline.execute(plugin)
+        pipeline.execute(plugin, workingDirectory)
     }
 
 }

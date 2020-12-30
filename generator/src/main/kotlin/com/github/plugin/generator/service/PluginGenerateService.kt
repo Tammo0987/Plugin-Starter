@@ -8,9 +8,8 @@ import java.nio.file.Path
 
 object PluginGenerateService {
 
-    // TODO add working path for generating
     fun generate(plugin: Plugin, path: Path) =
-        this.mapPluginToPipeline(plugin).execute(plugin)
+        this.mapPluginToPipeline(plugin).execute(plugin, path)
 
     private fun mapPluginToPipeline(plugin: Plugin): Pipeline {
         val pipeline = Pipeline()

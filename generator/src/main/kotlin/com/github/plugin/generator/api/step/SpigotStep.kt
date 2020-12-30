@@ -10,6 +10,7 @@ import com.github.plugin.generator.service.step.io.DirectoryCreationStep
 import com.github.plugin.generator.service.step.io.FileCreationStep
 import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.classOf
+import java.nio.file.Path
 import java.util.*
 import javax.lang.model.element.Modifier
 import kotlin.io.path.ExperimentalPathApi
@@ -20,7 +21,7 @@ class SpigotStep : Step() {
         ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)).registerModule(KotlinModule())
 
     @ExperimentalPathApi
-    override fun process(plugin: Plugin) {
+    override fun process(plugin: Plugin, workingDirectory: Path) {
         val metadata = plugin.metadata
         FileCreationStep(
             "${plugin.metadata.name}/src/main/resources/plugin.yaml",
@@ -30,15 +31,15 @@ class SpigotStep : Step() {
                     metadata.name,
                     metadata.version,
                     metadata.description ?: "",
-                    listOf(metadata.author ?: "")
+                    metadata.authors
                 )
             )
-        ).process(plugin)
+        ).process(plugin, workingDirectory)
 
         DirectoryCreationStep(
             "${plugin.metadata.name}/src/main/java/${this.composePackageAsPath(plugin)}"
         ).process(
-            plugin
+            plugin, workingDirectory
         )
 
         FileCreationStep(
@@ -47,7 +48,7 @@ class SpigotStep : Step() {
                     Locale.ENGLISH
                 )
             }.java", this.composePluginClass(plugin).toByteArray()
-        ).process(plugin)
+        ).process(plugin, workingDirectory)
     }
 
     private fun composePluginClass(plugin: Plugin): String {
