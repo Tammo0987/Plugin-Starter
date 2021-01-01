@@ -1,5 +1,13 @@
 {
+    "[css]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
     "css.validate": false,
-    "less.validate": false,
-    "scss.validate": false
+    "scss.validate": false,
+    "vetur.format.defaultFormatter.css": "none",
+    "vetur.format.defaultFormatter.scss": "none",
+    "vetur.validation.style": false
 }
