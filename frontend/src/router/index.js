@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import Generate from '@/view/Generate.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     name: 'Home',
+    component: Generate,
   },
 ];
 

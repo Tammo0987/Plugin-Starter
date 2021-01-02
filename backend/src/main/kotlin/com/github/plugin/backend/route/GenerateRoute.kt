@@ -9,7 +9,7 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import java.io.File
 
-fun Route.generate() = get("/api/generate") {
+fun Route.generate() = post("/api/generate") {
     val plugin = call.receive<Plugin>()
 
     val zipFile = ZipGenerateService.generateZip(plugin)
