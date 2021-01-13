@@ -1,6 +1,7 @@
 package com.github.plugin.backend
 
 import com.github.plugin.backend.route.generate
+import com.github.plugin.backend.route.versions
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -41,6 +42,7 @@ fun Application.module() {
 
     install(Routing) {
         generate()
+        versions()
     }
 
     install(StatusPages) {

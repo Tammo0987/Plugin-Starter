@@ -1,6 +1,6 @@
 package com.github.plugin.generator.api
 
-import com.github.plugin.generator.api.step.PaperSpigotStep
+import com.github.plugin.generator.api.step.PaperStep
 import com.github.plugin.generator.api.step.SpigotStep
 import com.github.plugin.generator.api.step.SpongeStep
 import com.github.plugin.generator.model.dependency.Dependency
@@ -61,10 +61,10 @@ enum class PluginApi(
         "spigot-api",
         DependencyScope.PROVIDED
     ),
-    PAPER_SPIGOT(
+    PAPER(
         emptyList(),
         emptyList(),
-        PaperSpigotStep(),
+        PaperStep(),
         "",
         "",
         DependencyScope.PROVIDED
