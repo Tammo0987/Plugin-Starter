@@ -29,7 +29,16 @@
               v-model="plugin.api"
             />
           </div>
-          <div class="flex justify-center items-center">DROP DOWN</div>
+          <div class="flex flex-col my-6">
+            <h4>API Version</h4>
+            <div class="flex flex-row mr-6">
+              <base-drop-down
+                label="API Version"
+                :options="apiVersions[plugin.api]"
+                v-model="plugin.version"
+              />
+            </div>
+          </div>
         </div>
 
         <h4 class="mt-4">Project Metadata</h4>
@@ -75,6 +84,7 @@
 import BaseButton from '@/components/BaseButton.vue';
 import BaseSelection from '@/components/BaseSelection.vue';
 import BaseInput from '@/components/BaseInput.vue';
+import BaseDropDown from '@/components/BaseDropDown.vue';
 import AuthorInput from '@/components/AuthorInput.vue';
 
 import axios from 'axios';
@@ -83,6 +93,7 @@ export default {
   components: {
     BaseButton,
     BaseSelection,
+    BaseDropDown,
     BaseInput,
     AuthorInput,
   },
@@ -105,13 +116,15 @@ export default {
       language: 'JAVA',
       buildTools: ['MAVEN', 'GRADLE'],
       languages: ['JAVA', 'KOTLIN'],
-      apis: ['SPIGOT', 'PAPER_SPIGOT', 'SPONGE'],
+      apis: ['SPIGOT', 'PAPER', 'SPONGE'],
+      apiVersions: {},
     };
+  },
+  created() {
+    this.loadVersions();
   },
   methods: {
     generate() {
-      console.log(this.plugin.metadata.description);
-
       axios
         .post('http://127.0.0.1/api/generate', this.plugin, {
           responseType: 'blob',
@@ -130,7 +143,10 @@ export default {
           document.body.removeChild(link);
         });
     },
-    // TODO implemented the correct function
+    async loadVersions() {
+      const { data } = await axios.get('http://127.0.0.1/api/versions');
+      this.apiVersions = data;
+    },
     capitalize(value) {
       return `${value.charAt(0)}${value.slice(1).toLowerCase()}`.replace('_', ' ');
     },
