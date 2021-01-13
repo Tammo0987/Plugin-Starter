@@ -4,5 +4,5 @@ data class Dependency(
     val group: String,
     val artifact: String,
     val version: String,
-    val scope: DependencyScope
+    val scope: DependencyScope = DependencyScope.COMPILE
 )

@@ -4,6 +4,7 @@ import com.github.plugin.generator.api.PluginApi
 import com.github.plugin.generator.model.Plugin
 import com.github.plugin.generator.model.PluginMetadata
 import com.github.plugin.generator.model.build.BuildTool
+import com.github.plugin.generator.model.language.Language
 import com.github.plugin.generator.service.PluginGenerateService
 import java.nio.file.Paths
 
@@ -12,9 +13,10 @@ fun main() {
     val plugin =
         Plugin(
             metadata,
-            BuildTool.GRADLE,
+            BuildTool.MAVEN,
             PluginApi.SPIGOT,
             "1.8.8-R0.1-SNAPSHOT",
+            Language.KOTLIN,
             mutableListOf(),
             mutableListOf()
         )

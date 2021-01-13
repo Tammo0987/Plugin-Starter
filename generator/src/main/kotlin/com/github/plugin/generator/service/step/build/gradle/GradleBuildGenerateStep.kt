@@ -3,6 +3,7 @@ package com.github.plugin.generator.service.step.build.gradle
 import com.github.plugin.generator.model.Plugin
 import com.github.plugin.generator.model.dependency.Dependency
 import com.github.plugin.generator.model.dependency.DependencyScope
+import com.github.plugin.generator.model.language.Language
 import com.github.plugin.generator.model.pipeline.Step
 import com.github.plugin.generator.model.repository.Repository
 import com.github.plugin.generator.service.step.io.FileCreationStep
@@ -28,7 +29,7 @@ class GradleBuildGenerateStep : Step() {
     private fun generateBuildFileContent(plugin: Plugin): String {
         val pluginBlock = CodeBlock.builder()
             .beginControlFlow("plugins")
-            .addStatement("java")
+            .addStatement(this.createLanguagePluginStatement(plugin))
             .endControlFlow()
             .build()
             .toString()
@@ -56,7 +57,14 @@ class GradleBuildGenerateStep : Step() {
                 lineBreak() +
                 repositoryBlock +
                 lineBreak() +
-                generateDependencies(plugin.dependencies)
+                generateDependencies(plugin)
+    }
+
+    private fun createLanguagePluginStatement(plugin: Plugin): String {
+        return when(plugin.language) {
+            Language.JAVA -> "java"
+            Language.KOTLIN -> "kotlin(\"jvm\") version \"1.4.21\""
+        }
     }
 
     private fun generateRepositories(repositories: List<Repository>): List<CodeBlock> {
@@ -72,10 +80,14 @@ class GradleBuildGenerateStep : Step() {
             .build()
     }
 
-    private fun generateDependencies(dependencies: List<Dependency>): String {
+    private fun generateDependencies(plugin: Plugin): String {
         val dependencyCodeBlock = CodeBlock.builder()
 
-        dependencies.map { mapDependency(it) }.forEach { dependencyCodeBlock.addStatement(it) }
+        if (plugin.language == Language.KOTLIN) {
+            dependencyCodeBlock.addStatement("implementation(kotlin(\"stdlib\"))")
+        }
+
+        plugin.dependencies.map { mapDependency(it) }.forEach { dependencyCodeBlock.addStatement(it) }
 
         val dependencyBlock = dependencyCodeBlock.build()
 

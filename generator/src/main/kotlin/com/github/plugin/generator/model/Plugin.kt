@@ -3,6 +3,7 @@ package com.github.plugin.generator.model
 import com.github.plugin.generator.api.PluginApi
 import com.github.plugin.generator.model.build.BuildTool
 import com.github.plugin.generator.model.dependency.Dependency
+import com.github.plugin.generator.model.language.Language
 import com.github.plugin.generator.model.repository.Repository
 
 data class Plugin(
@@ -10,6 +11,7 @@ data class Plugin(
     val buildTool: BuildTool,
     val api: PluginApi,
     val version: String,
+    val language: Language,
     val repositories: MutableList<Repository>,
     val dependencies: MutableList<Dependency>
 ) {

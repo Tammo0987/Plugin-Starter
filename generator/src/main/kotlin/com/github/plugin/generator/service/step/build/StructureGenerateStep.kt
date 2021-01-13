@@ -12,7 +12,9 @@ class StructureGenerateStep : Step() {
         val pipeline = Pipeline()
         val name = plugin.metadata.name
 
-        val directories = listOf("main/java", "main/resources", "test/java", "test/resources")
+        val language = plugin.language.toString().toLowerCase()
+
+        val directories = listOf("main/$language", "main/resources", "test/$language", "test/resources")
         val steps = directories.map { "${name}/src/${it}" }.map { DirectoryCreationStep(it) }
 
         pipeline.appendSteps(steps)

@@ -2,6 +2,7 @@ package com.github.plugin.generator.service.step.build.maven
 
 import com.github.plugin.generator.model.Plugin
 import com.github.plugin.generator.model.dependency.Dependency
+import com.github.plugin.generator.model.language.Language
 import com.github.plugin.generator.model.pipeline.Step
 import com.github.plugin.generator.model.repository.Repository
 import com.github.plugin.generator.service.step.io.FileCreationStep
@@ -23,6 +24,18 @@ class MavenPomGenerateStep : Step() {
     }
 
     private fun generatePom(plugin: Plugin): String {
+        if (plugin.language == Language.KOTLIN) {
+            plugin.repositories.add(Repository("mavenCentral", "https://repo1.maven.org/maven2/"))
+
+            plugin.dependencies.add(
+                Dependency(
+                    "org.jetbrains.kotlin",
+                    "kotlin-stdlib-jdk8",
+                    "1.4.21"
+                )
+            )
+        }
+
         return xml("project") {
             globalProcessingInstruction(
                 "xml",
@@ -46,6 +59,11 @@ class MavenPomGenerateStep : Step() {
                 createRepositories(plugin)
             }
 
+            if (plugin.language == Language.KOTLIN) {
+                emptyLine()
+                createKotlinBuildProcess()
+            }
+
             emptyLine()
 
             if (plugin.dependencies.isNotEmpty()) {
@@ -67,6 +85,40 @@ class MavenPomGenerateStep : Step() {
             element("id", repository.id)
             element("url", repository.url)
         }
+    }
+
+    private fun Node.createKotlinBuildProcess() {
+        val build = xml("build") {
+            element("sourceDirectory", "src/main/kotlin")
+            element("testSourceDirectory", "src/test/kotlin")
+
+            "plugins" {
+                "plugin" {
+                    element("groupId", "org.jetbrains.kotlin")
+                    element("artifactId", "kotlin-maven-plugin")
+                    element("version", "1.4.21")
+
+                    "executions" {
+                        "execution" {
+                            element("id", "compile")
+                            element("phase", "compile")
+                            "goals" {
+                                element("goal", "compile")
+                            }
+                        }
+                        "execution" {
+                            element("id", "test-compile")
+                            element("phase", "test-compile")
+                            "goals" {
+                                element("goal", "test-compile")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        addNode(build)
     }
 
     private fun Node.createDependencies(plugin: Plugin) {
