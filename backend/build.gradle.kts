@@ -21,6 +21,8 @@ dependencies {
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-jackson:$ktorVersion")
 
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.0")
+
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     implementation("net.lingala.zip4j:zip4j:2.6.4")

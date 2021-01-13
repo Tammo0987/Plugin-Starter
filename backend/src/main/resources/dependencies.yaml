@@ -1,0 +1,41 @@
+categories:
+  - name: Testing
+    dependencies:
+      - groupId: junit
+        artifactId: junit
+        version: 4.12
+      - groupId: org.junit.jupiter
+        artifactId: junit-jupiter-engine
+        version: 5.5.2
+      - groupId: org.mockito
+        artifactId: mockito-core
+        version: 3.7.0
+
+  - name: Utilities
+    dependencies:
+      - groupId: com.google.guava
+        artifactId: guava
+        version: 30.1-jre
+      - groupId: org.apache.commons
+        artifactId: commons-lang3
+        version: 3.11
+
+  - name: Dependency Injection
+    dependencies:
+      - groupId: com.google.inject
+        artifactId: guice
+        version: 4.2.3
+      # TODO Spring
+
+  - name: Serialization
+    dependencies:
+      - groupId: com.fasterxml.jackson.core
+        artifactId: jackson-core
+        version: 2.12.1
+      - groupId: com.google.code.gson
+        artifactId: gson
+        version: 2.8.6
+
+  - name: Logging
+  - name: HTTP
+  - name: Database

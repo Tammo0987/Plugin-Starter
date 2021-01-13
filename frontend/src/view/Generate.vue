@@ -12,10 +12,10 @@
           />
           <base-selection
             name="Language"
-            :selected="language"
+            :selected="plugin.language"
             :options="languages"
             :renderMethod="capitalize"
-            v-model="language"
+            v-model="plugin.language"
           />
         </div>
 
@@ -110,10 +110,10 @@ export default {
         buildTool: 'GRADLE',
         api: 'SPIGOT',
         version: '1.8.8-R0.1-SNAPSHOT',
+        language: 'JAVA',
         repositories: [],
         dependencies: [],
       },
-      language: 'JAVA',
       buildTools: ['MAVEN', 'GRADLE'],
       languages: ['JAVA', 'KOTLIN'],
       apis: ['SPIGOT', 'PAPER', 'SPONGE'],
