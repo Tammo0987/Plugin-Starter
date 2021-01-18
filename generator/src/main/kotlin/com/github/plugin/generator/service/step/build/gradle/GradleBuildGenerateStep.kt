@@ -103,7 +103,7 @@ class GradleBuildGenerateStep : Step() {
         val scope = when (dependency.scope) {
             DependencyScope.COMPILE -> "implementation"
             DependencyScope.PROVIDED -> "compileOnly"
-            DependencyScope.TESTING -> "testCompile"
+            DependencyScope.TEST -> "testCompile"
         }
         return "${scope}(\"${dependency.group}:${dependency.artifact}:${dependency.version}\")"
     }

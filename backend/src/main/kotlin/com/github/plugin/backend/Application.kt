@@ -1,5 +1,6 @@
 package com.github.plugin.backend
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.github.plugin.backend.route.dependencies
 import com.github.plugin.backend.route.generate
 import com.github.plugin.backend.route.versions
@@ -38,7 +39,9 @@ fun Application.module() {
     }
 
     install(ContentNegotiation) {
-        jackson()
+        jackson {
+            disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+        }
     }
 
     install(Routing) {

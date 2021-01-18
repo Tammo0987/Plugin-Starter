@@ -74,6 +74,7 @@
       </div>
       <div class="p-3">
         <h4>Dependencies</h4>
+        <dependencies @change="addDependency($event)" />
       </div>
     </div>
     <base-button name="Generate" @click="this.generate" class="mt-6" />
@@ -88,6 +89,7 @@ import BaseDropDown from '@/components/BaseDropDown.vue';
 import AuthorInput from '@/components/AuthorInput.vue';
 
 import axios from 'axios';
+import Dependencies from '@/components/dependency/Dependencies.vue';
 
 export default {
   components: {
@@ -96,6 +98,7 @@ export default {
     BaseDropDown,
     BaseInput,
     AuthorInput,
+    Dependencies,
   },
   data() {
     return {
@@ -118,13 +121,28 @@ export default {
       languages: ['JAVA', 'KOTLIN'],
       apis: ['SPIGOT', 'PAPER', 'SPONGE'],
       apiVersions: {},
+      selectedDependencies: [],
     };
   },
   created() {
     this.loadVersions();
   },
   methods: {
+    addDependency(dependency) {
+      if (dependency.included) {
+        this.selectedDependencies.push(dependency);
+      } else {
+        const index = this.selectedDependencies.findIndex((item) => item.name === dependency.name);
+        if (index > -1) {
+          this.selectedDependencies.splice(index, 1);
+        }
+      }
+    },
     generate() {
+      this.selectedDependencies.forEach((dependency) => {
+        this.plugin.dependencies.push(dependency);
+      });
+
       axios
         .post('http://127.0.0.1/api/generate', this.plugin, {
           responseType: 'blob',
@@ -141,6 +159,8 @@ export default {
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
+
+          this.plugin.dependencies = [];
         });
     },
     async loadVersions() {
