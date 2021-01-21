@@ -1,8 +1,8 @@
 <template>
   <div>
     <select
-      :name="label"
       :id="label"
+      :name="label"
       @input="$emit('input', $event.target.value)"
     >
       <option v-for="option in options" :key="option" :value="option">

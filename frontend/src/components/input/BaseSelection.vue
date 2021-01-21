@@ -4,10 +4,10 @@
     <div class="flex mt-2">
       <div v-for="value in options" :key="value" class="flex items-center">
         <input
-          type="radio"
-          :value="value"
           :id="value"
           :checked="selected === value"
+          :value="value"
+          type="radio"
           @input="$emit('input', $event.target.value)"
         />
         <label :for="value">{{ capitalize(value) }}</label>
@@ -43,7 +43,7 @@ export default {
 <style lang="scss" scoped>
 input {
   @apply focus:ring-transparent h-4 w-4 text-indigo-600 border-gray-300
-    transition-colors duration-300;
+  transition-colors duration-300;
 }
 
 label {

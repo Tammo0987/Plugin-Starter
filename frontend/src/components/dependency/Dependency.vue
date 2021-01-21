@@ -3,15 +3,15 @@
     <div class="widget flex flex-row items-center justify-between">
       <div>
         {{ dependency.name }}
-        <br />
+        <br/>
         {{ entry }}
       </div>
       <div>
         <input
-          type="checkbox"
-          :name="dependency.name"
           :id="dependency.name"
           v-model="included"
+          :name="dependency.name"
+          type="checkbox"
           @change="change()"
         />
       </div>
@@ -54,7 +54,7 @@ export default {
 <style scoped>
 .widget {
   @apply rounded p-2 bg-white border border-gray-200 text-sm font-light text-gray-600
-    m-2;
+  m-2;
 }
 
 input {

@@ -1,4 +1,7 @@
-[*.{js,jsx,ts,tsx,vue}]
+[*.kt]
+end_of_line = lf
+
+[*.{js, jsx, ts, tsx, vue}]
 indent_style = space
 indent_size = 2
 end_of_line = lf

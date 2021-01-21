@@ -1,20 +1,20 @@
 <template>
   <div>
     <form @submit.prevent="addAuthor()">
-      <base-input label="Authors" v-model="author" />
+      <base-input v-model="author" label="Authors"/>
     </form>
 
     <div class="max-h-60 overflow-y-auto">
       <div
-        class="widget mb-1 flex flex-row justify-between items-center"
         v-for="author in authors"
         :key="author"
+        class="widget mb-1 flex flex-row justify-between items-center"
       >
         <span>{{ author }}</span>
 
-        <svg width="15px" height="15px" @click="removeAuthor(author)">
-          <line x1="0" y1="0" x2="15" y2="15" stroke="gray" stroke-width="2" />
-          <line x1="15" y1="0" x2="0" y2="15" stroke="gray" stroke-width="2" />
+        <svg height="15px" width="15px" @click="removeAuthor(author)">
+          <line stroke="gray" stroke-width="2" x1="0" x2="15" y1="0" y2="15"/>
+          <line stroke="gray" stroke-width="2" x1="15" x2="0" y1="0" y2="15"/>
         </svg>
       </div>
     </div>

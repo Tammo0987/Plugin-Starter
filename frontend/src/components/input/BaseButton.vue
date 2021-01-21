@@ -21,9 +21,9 @@ export default {
 <style lang="scss" scoped>
 button {
   @apply whitespace-nowrap inline-flex items-center justify-center
-    px-8 py-2
-    border border-transparent rounded-md shadow-sm
-    text-xl font-medium
-    text-white bg-indigo-600 hover:bg-indigo-700;
+  px-8 py-2
+  border border-transparent rounded-md shadow-sm
+  text-xl font-medium
+  text-white bg-indigo-600 hover:bg-indigo-700;
 }
 </style>

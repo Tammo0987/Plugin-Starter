@@ -3,8 +3,8 @@
     <category
       v-for="category in categories"
       :key="category.name"
-      :name="category.name"
       :dependencies="category.dependencies"
+      :name="category.name"
     />
   </div>
 </template>

@@ -2,7 +2,11 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import {
-  SET_PLUGIN, ADD_DEPENDENCY, REMOVE_DEPENDENCY, ADD_AUTHOR, REMOVE_AUTHOR,
+  ADD_AUTHOR,
+  ADD_DEPENDENCY,
+  REMOVE_AUTHOR,
+  REMOVE_DEPENDENCY,
+  SET_PLUGIN,
 } from './mutations';
 
 Vue.use(Vuex);

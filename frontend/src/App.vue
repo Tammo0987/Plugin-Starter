@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <navbar />
+    <navbar/>
     <main>
-      <router-view />
+      <router-view/>
     </main>
-    <default-footer />
+    <default-footer/>
   </div>
 </template>
 

@@ -5,35 +5,35 @@
       <div class="flex flex-col">
         <div class="flex flex-row my-2 flex-1 flex-wrap">
           <base-selection
-            name="Build Tool"
-            :selected="plugin.buildTool"
-            :options="buildTools"
             v-model="plugin.buildTool"
+            :options="buildTools"
+            :selected="plugin.buildTool"
             class="flex-1 w-0"
+            name="Build Tool"
           />
           <base-selection
-            name="Language"
-            :selected="plugin.language"
-            :options="languages"
             v-model="plugin.language"
+            :options="languages"
+            :selected="plugin.language"
             class="flex-1 w-0"
+            name="Language"
           />
         </div>
         <div class="flex flex-row my-2 flex-1 flex-wrap">
           <base-selection
-            name="API"
-            :selected="plugin.api"
-            :options="apis"
             v-model="plugin.api"
+            :options="apis"
+            :selected="plugin.api"
             class="flex-1 w-0"
+            name="API"
           />
           <div class="flex-1 w-0">
             <h3>API Version</h3>
             <base-drop-down
-              label="API Version"
-              :options="apiVersions[plugin.api]"
               v-model="plugin.version"
+              :options="apiVersions[plugin.api]"
               class="w-60"
+              label="API Version"
             />
           </div>
         </div>
@@ -42,37 +42,37 @@
           <div class="flex flex-row">
             <div class="flex-1 w-0 mr-4">
               <base-input
-                label="Name"
-                :value="plugin.metadata.name"
                 v-model="plugin.metadata.name"
+                :value="plugin.metadata.name"
+                label="Name"
               />
 
               <base-input
-                label="Group"
-                :value="plugin.metadata.group"
                 v-model="plugin.metadata.group"
+                :value="plugin.metadata.group"
+                label="Group"
               />
 
               <base-input
-                label="Version"
-                :value="plugin.metadata.version"
                 v-model="plugin.metadata.version"
+                :value="plugin.metadata.version"
+                label="Version"
               />
 
               <base-input
-                label="Description"
                 v-model="plugin.metadata.description"
+                label="Description"
               />
             </div>
 
-            <author-input class="flex-1 w-0 mr-6" />
+            <author-input class="flex-1 w-0 mr-6"/>
           </div>
         </div>
       </div>
     </div>
     <div class="flex-1 w-full max-h-full flex flex-col p-2">
       <h2>Dependencies</h2>
-      <dependencies />
+      <dependencies/>
     </div>
   </div>
 </template>
