@@ -8,7 +8,6 @@
         v-for="dependency in dependencies"
         :key="dependency.name"
         :dependency="dependency"
-        @change="$emit('change', $event)"
       />
     </div>
   </div>

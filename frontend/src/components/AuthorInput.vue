@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="addAuthor()">
-      <base-input label="Author" v-model="author" />
+      <base-input label="Authors" v-model="author" />
     </form>
 
     <div class="max-h-60 overflow-y-auto">
@@ -22,25 +22,33 @@
 </template>
 
 <script>
-import BaseInput from './BaseInput.vue';
+import { ADD_AUTHOR, REMOVE_AUTHOR } from '@/store/mutations';
+import BaseInput from './input/BaseInput.vue';
 
 export default {
   components: { BaseInput },
   data() {
     return {
       author: '',
-      authors: [],
     };
+  },
+  computed: {
+    authors: {
+      get() {
+        return this.$store.getters.plugin.metadata.authors;
+      },
+    },
   },
   methods: {
     addAuthor() {
       if (!this.authors.includes(this.author) && this.author.trim() !== '') {
-        this.authors.push(this.author);
+        this.$store.commit(ADD_AUTHOR, this.author);
       }
+
       this.author = '';
     },
     removeAuthor(author) {
-      this.authors = this.authors.filter((listedAuthor) => listedAuthor !== author);
+      this.$store.commit(REMOVE_AUTHOR, author);
     },
   },
 };
