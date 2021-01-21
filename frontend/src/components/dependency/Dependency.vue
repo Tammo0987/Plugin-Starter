@@ -1,23 +1,27 @@
 <template>
-  <div class="widget flex flex-row items-center justify-between">
-    <div>
-      {{ dependency.name }}
-      <br />
-      {{ entry }}
+  <label :for="dependency.name">
+    <div class="widget flex flex-row items-center justify-between">
+      <div>
+        {{ dependency.name }}
+        <br />
+        {{ entry }}
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          :name="dependency.name"
+          :id="dependency.name"
+          v-model="included"
+          @change="change()"
+        />
+      </div>
     </div>
-    <div>
-      <input
-        type="checkbox"
-        name="included"
-        id="included"
-        v-model="included"
-        @change="change()"
-      />
-    </div>
-  </div>
+  </label>
 </template>
 
 <script>
+import { ADD_DEPENDENCY, REMOVE_DEPENDENCY } from '@/store/mutations';
+
 export default {
   props: {
     dependency: {
@@ -37,8 +41,11 @@ export default {
   },
   methods: {
     change() {
-      const payload = { ...this.dependency, included: this.included };
-      this.$emit('change', payload);
+      if (this.included) {
+        this.$store.commit(ADD_DEPENDENCY, this.dependency);
+      } else {
+        this.$store.commit(REMOVE_DEPENDENCY, this.dependency);
+      }
     },
   },
 };
@@ -51,6 +58,10 @@ export default {
 }
 
 input {
-  @apply transition-colors duration-300 focus:ring-0;
+  @apply transition-colors duration-300 text-indigo-600 border-gray-400 focus:ring-0;
+}
+
+label {
+  @apply cursor-pointer;
 }
 </style>

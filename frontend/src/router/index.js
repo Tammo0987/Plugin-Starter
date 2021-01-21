@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Generate from '@/view/Generate.vue';
+import GenerateView from '@/view/GenerateView.vue';
 
 Vue.use(VueRouter);
 
@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Generate,
+    component: GenerateView,
   },
 ];
 

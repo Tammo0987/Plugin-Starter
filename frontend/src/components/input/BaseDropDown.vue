@@ -1,7 +1,5 @@
 <template>
-  <div class="w-full">
-    <label :for="label">{{ label }}</label>
-
+  <div>
     <select
       :name="label"
       :id="label"
@@ -41,6 +39,6 @@ label {
 }
 
 select {
-  @apply h-10 rounded text-base border-gray-300 border-2 w-full shadow-sm;
+  @apply rounded text-base border-gray-300 border-2 h-10 w-60 shadow-sm mt-2;
 }
 </style>

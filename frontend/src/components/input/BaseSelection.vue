@@ -1,6 +1,6 @@
 <template>
-  <div class="mr-6">
-    <h4>{{ name }}</h4>
+  <div class="w-72">
+    <h3>{{ name }}</h3>
     <div class="flex mt-2">
       <div v-for="value in options" :key="value" class="flex items-center">
         <input
@@ -10,10 +10,7 @@
           :checked="selected === value"
           @input="$emit('input', $event.target.value)"
         />
-        <label :for="value" v-if="renderMethod">{{
-          renderMethod(value)
-        }}</label>
-        <label :for="value" v-else>{{ value }}</label>
+        <label :for="value">{{ capitalize(value) }}</label>
       </div>
     </div>
   </div>
@@ -34,9 +31,10 @@ export default {
       type: Array,
       required: true,
     },
-    renderMethod: {
-      type: Function,
-      required: false,
+  },
+  methods: {
+    capitalize(value) {
+      return `${value.charAt(0)}${value.slice(1).toLowerCase()}`.replace('_', ' ');
     },
   },
 };
