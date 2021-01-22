@@ -1,6 +1,5 @@
 package com.github.plugin.generator.api
 
-import com.github.plugin.generator.api.step.PaperStep
 import com.github.plugin.generator.api.step.SpigotStep
 import com.github.plugin.generator.api.step.SpongeStep
 import com.github.plugin.generator.model.dependency.Dependency
@@ -62,11 +61,36 @@ enum class PluginApi(
         DependencyScope.PROVIDED
     ),
     PAPER(
-        emptyList(),
-        emptyList(),
-        PaperStep(),
-        "",
-        "",
+        listOf(Repository("papermc", "https://papermc.io/repo/repository/maven-public/")),
+        listOf(
+            "1.16.5-R0.1-SNAPSHOT",
+            "1.16.4-R0.1-SNAPSHOT",
+            "1.16.3-R0.1-SNAPSHOT",
+            "1.16.2-R0.1-SNAPSHOT",
+            "1.16.1-R0.1-SNAPSHOT",
+            "1.15.2-R0.1-SNAPSHOT",
+            "1.15.1-R0.1-SNAPSHOT",
+            "1.15-R0.1-SNAPSHOT",
+            "1.14.4-R0.1-SNAPSHOT",
+            "1.14.3-R0.1-SNAPSHOT",
+            "1.14.2-R0.1-SNAPSHOT",
+            "1.14.1-R0.1-SNAPSHOT",
+            "1.14-R0.1-SNAPSHOT",
+            "1.13.2-R0.1-SNAPSHOT",
+            "1.13.1-R0.1-SNAPSHOT",
+            "1.13-R0.1-SNAPSHOT",
+            "1.12.2-R0.1-SNAPSHOT",
+            "1.12.1-R0.1-SNAPSHOT",
+            "1.12-R0.1-SNAPSHOT",
+            "1.11.2-R0.1-SNAPSHOT",
+            "1.11.1-R0.1-SNAPSHOT",
+            "1.11-R0.1-SNAPSHOT",
+            "1.10.2-R0.1-SNAPSHOT",
+            "1.9.4-R0.1-SNAPSHOT",
+        ),
+        SpigotStep(),
+        "com.destroystokyo.paper",
+        "paper-api",
         DependencyScope.PROVIDED
     ),
     SPONGE(

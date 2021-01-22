@@ -13,9 +13,9 @@ fun main() {
     val plugin =
         Plugin(
             metadata,
-            BuildTool.MAVEN,
-            PluginApi.SPIGOT,
-            "1.8.8-R0.1-SNAPSHOT",
+            BuildTool.GRADLE,
+            PluginApi.PAPER,
+            "1.16.5-R0.1-SNAPSHOT",
             Language.KOTLIN,
             mutableListOf(),
             mutableListOf()
