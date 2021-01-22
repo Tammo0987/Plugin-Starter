@@ -94,11 +94,11 @@ enum class PluginApi(
         DependencyScope.PROVIDED
     ),
     SPONGE(
-        emptyList(),
-        emptyList(),
+        listOf(Repository("sponge", "https://repo.spongepowered.org/maven")),
+        listOf("8.0.0", "7.2.0", "7.1.0", "7.0.0", "6.0.0", "5.1.0"),
         SpongeStep(),
-        "",
-        "",
+        "org.spongepowered",
+        "spongeapi",
         DependencyScope.PROVIDED
     );
 

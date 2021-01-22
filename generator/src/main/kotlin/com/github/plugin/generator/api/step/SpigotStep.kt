@@ -13,7 +13,6 @@ import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.classOf
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import java.nio.file.Path
 import java.util.*
@@ -29,7 +28,7 @@ class SpigotStep : Step() {
     override fun process(plugin: Plugin, workingDirectory: Path) {
         val metadata = plugin.metadata
         FileCreationStep(
-            "${plugin.metadata.name}/src/main/resources/plugin.yaml",
+            "${metadata.name}/src/main/resources/plugin.yaml",
             this.mapper.writeValueAsBytes(
                 PluginYamlMetadata(
                     "${this.composePackage(plugin)}.${metadata.name.capitalize(Locale.ENGLISH)}",
@@ -41,7 +40,7 @@ class SpigotStep : Step() {
             )
         ).process(plugin, workingDirectory)
 
-        val path = "${plugin.metadata.name}/src/main/${plugin.language.toString().toLowerCase()}/${
+        val path = "${metadata.name}/src/main/${plugin.language.toString().toLowerCase()}/${
             this.composePackageAsPath(plugin)
         }"
 
@@ -83,11 +82,11 @@ class SpigotStep : Step() {
             .addType(
                 TypeSpec.classBuilder(name)
                     .superclass(ClassName("org.bukkit.plugin.java", "JavaPlugin"))
-                    .addModifiers(KModifier.PUBLIC)
                     .build()
             )
             .build()
             .toString()
+            .replace("public class", "class")
     }
 
     private fun composePackage(plugin: Plugin): String =

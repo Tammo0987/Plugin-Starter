@@ -14,8 +14,8 @@ fun main() {
         Plugin(
             metadata,
             BuildTool.GRADLE,
-            PluginApi.PAPER,
-            "1.16.5-R0.1-SNAPSHOT",
+            PluginApi.SPONGE,
+            "7.2.0",
             Language.KOTLIN,
             mutableListOf(),
             mutableListOf()
