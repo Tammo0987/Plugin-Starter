@@ -36,6 +36,6 @@ export default {
 <style scoped>
 .widget {
   @apply rounded p-2 bg-white border border-gray-200 text-sm font-light text-gray-600
-  m-2;
+    m-2 dark:bg-gray-700 dark:border-gray-400 dark:text-gray-200;
 }
 </style>

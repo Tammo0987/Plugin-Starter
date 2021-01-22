@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="addAuthor()">
-      <base-input v-model="author" label="Authors"/>
+      <base-input v-model="author" label="Authors" />
     </form>
 
     <div class="max-h-60 overflow-y-auto">
@@ -13,8 +13,8 @@
         <span>{{ author }}</span>
 
         <svg height="15px" width="15px" @click="removeAuthor(author)">
-          <line stroke="gray" stroke-width="2" x1="0" x2="15" y1="0" y2="15"/>
-          <line stroke="gray" stroke-width="2" x1="15" x2="0" y1="0" y2="15"/>
+          <line stroke-width="2" x1="0" x2="15" y1="0" y2="15" />
+          <line stroke-width="2" x1="15" x2="0" y1="0" y2="15" />
         </svg>
       </div>
     </div>
@@ -56,7 +56,12 @@ export default {
 
 <style lang="scss" scoped>
 .widget {
-  @apply rounded p-2 bg-white border border-gray-200 text-sm uppercase font-light text-gray-500;
+  @apply rounded p-2 bg-white border border-gray-200 text-sm font-light text-gray-500
+    dark:bg-gray-700 dark:border-gray-400 dark:text-gray-200;
+}
+
+svg {
+  @apply stroke-current text-gray-600 dark:text-white;
 }
 
 svg:hover {

@@ -1,8 +1,8 @@
 <template>
   <div>
     <label :for="label" class="block text-sm font-medium text-gray-700">{{
-        label
-      }}</label>
+      label
+    }}</label>
     <input
       :id="label"
       :name="label"
@@ -35,11 +35,11 @@ export default {
 
 <style lang="scss" scoped>
 input {
-  @apply mb-3 focus:border-indigo-500 border-2
-  border-gray-300 block shadow-sm text-base rounded-md w-full;
+  @apply mb-3 focus:border-indigo-500 border-2 border-gray-300 dark:border-gray-500 block shadow-sm
+    text-base rounded-md w-full dark:bg-gray-700;
 }
 
 label {
-  @apply text-base mb-1;
+  @apply text-base mb-1 dark:text-gray-300;
 }
 </style>

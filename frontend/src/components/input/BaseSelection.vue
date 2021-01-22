@@ -43,7 +43,8 @@ export default {
 <style lang="scss" scoped>
 input {
   @apply focus:ring-transparent h-4 w-4 text-indigo-600 border-gray-300
-  transition-colors duration-300;
+    transition-colors duration-300 dark:bg-gray-700 dark:border-gray-400
+    dark:focus:ring-offset-transparent;
 }
 
 label {

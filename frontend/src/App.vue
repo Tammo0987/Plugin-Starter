@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <navbar/>
+    <navbar />
     <main>
-      <router-view/>
+      <router-view />
     </main>
-    <default-footer/>
+    <default-footer />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
 
 <style lang="css">
 body {
-  @apply bg-gray-50;
+  @apply bg-gray-50 dark:bg-gray-900 dark:text-white;
 }
 
 #app {
