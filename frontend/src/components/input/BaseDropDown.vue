@@ -30,6 +30,10 @@ export default {
       selected: this.options[0] || '',
     };
   },
+  updated() {
+    this.selected = this.options[0] || '';
+    this.$emit('input', this.selected);
+  },
 };
 </script>
 
