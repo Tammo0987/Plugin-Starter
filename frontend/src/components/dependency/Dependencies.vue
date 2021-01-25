@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { loadDependencies } from '@/service/BackendService';
+import { loadDependencies } from '@/service/backend.service';
 import Category from './Category.vue';
 
 export default {

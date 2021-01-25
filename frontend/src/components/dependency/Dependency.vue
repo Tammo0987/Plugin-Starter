@@ -28,10 +28,14 @@ export default {
       type: Object,
       required: true,
     },
+    preIncluded: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
-      included: false,
+      included: this.preIncluded,
     };
   },
   computed: {

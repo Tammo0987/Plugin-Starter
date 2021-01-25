@@ -32,6 +32,7 @@
             <base-drop-down
               v-model="plugin.version"
               :options="apiVersions[plugin.api]"
+              :defaultSelection="plugin.version"
               class="w-60"
               label="API Version"
             />
@@ -65,14 +66,14 @@
               />
             </div>
 
-            <author-input class="flex-1 w-0 mr-6"/>
+            <author-input class="flex-1 w-0 mr-6" />
           </div>
         </div>
       </div>
     </div>
     <div class="flex-1 w-full max-h-full flex flex-col p-2">
       <h2>Dependencies</h2>
-      <dependencies/>
+      <dependencies />
     </div>
   </div>
 </template>
@@ -84,7 +85,7 @@ import BaseDropDown from '@/components/input/BaseDropDown.vue';
 import BaseInput from '@/components/input/BaseInput.vue';
 import Dependencies from '@/components/dependency/Dependencies.vue';
 
-import { loadVersions } from '@/service/BackendService';
+import { loadVersions, setPluginParameterFromURL } from '@/service/backend.service';
 import { SET_PLUGIN } from '@/store/mutations';
 import { mapGetters } from 'vuex';
 
@@ -98,15 +99,12 @@ export default {
   },
   data() {
     return {
-      buildTools: ['MAVEN', 'GRADLE'],
-      languages: ['JAVA', 'KOTLIN'],
-      apis: ['SPIGOT', 'PAPER', 'SPONGE'],
       apiVersions: {},
       selectedDependencies: [],
     };
   },
   computed: {
-    ...mapGetters(['plugin']),
+    ...mapGetters(['plugin', 'buildTools', 'languages', 'apis']),
   },
   watch: {
     plugin: {
@@ -115,6 +113,9 @@ export default {
       },
       deep: true,
     },
+  },
+  beforeCreate() {
+    setPluginParameterFromURL(this.$route.query);
   },
   async created() {
     this.apiVersions = await loadVersions();

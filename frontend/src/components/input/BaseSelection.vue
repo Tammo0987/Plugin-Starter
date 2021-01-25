@@ -2,15 +2,22 @@
   <div class="w-72">
     <h3>{{ name }}</h3>
     <div class="flex mt-2">
-      <div v-for="value in options" :key="value" class="flex items-center">
+      <div
+        v-for="value in options"
+        :key="value"
+        class="flex items-center cursor-pointer"
+      >
         <input
           :id="value"
           :checked="selected === value"
           :value="value"
           type="radio"
+          class="cursor-pointer"
           @input="$emit('input', $event.target.value)"
         />
-        <label :for="value">{{ capitalize(value) }}</label>
+        <label :for="value" class="cursor-pointer">{{
+          capitalize(value)
+        }}</label>
       </div>
     </div>
   </div>

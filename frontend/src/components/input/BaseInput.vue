@@ -9,6 +9,7 @@
       :placeholder="label"
       :value="value"
       type="text"
+      autocomplete="off"
       @input="$emit('input', $event.target.value)"
     />
   </div>

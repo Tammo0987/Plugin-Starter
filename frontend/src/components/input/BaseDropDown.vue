@@ -5,7 +5,12 @@
       :name="label"
       @input="$emit('input', $event.target.value)"
     >
-      <option v-for="option in options" :key="option" :value="option">
+      <option
+        v-for="option in options"
+        :key="option"
+        :value="option"
+        :selected="option == defaultSelection ? 'selected' : ''"
+      >
         {{ option }}
       </option>
     </select>
@@ -24,14 +29,18 @@ export default {
       required: true,
       default: () => [],
     },
+    defaultSelection: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
-      selected: this.options[0] || '',
+      selected: this.defaultSelection || this.options[0] || '',
     };
   },
   updated() {
-    this.selected = this.options[0] || '';
+    this.selected = this.defaultSelection || this.options[0] || '';
     this.$emit('input', this.selected);
   },
 };

@@ -8,6 +8,7 @@
         v-for="dependency in dependencies"
         :key="dependency.name"
         :dependency="dependency"
+        :preIncluded="dependencyIsPreIncluded(dependency)"
       />
     </div>
   </div>
@@ -29,6 +30,13 @@ export default {
   },
   components: {
     Dependency,
+  },
+  methods: {
+    dependencyIsPreIncluded(dependency) {
+      return this.$store.getters.plugin.dependencies.some(
+        (element) => element.name === dependency.name,
+      );
+    },
   },
 };
 </script>
