@@ -1,0 +1,9 @@
+*.iml
+.idea
+
+build/*
+
+backend/build/*
+generator/build/*
+
+frontend/*

@@ -10,14 +10,8 @@ import io.ktor.http.*
 import io.ktor.jackson.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
 
-fun main() {
-    embeddedServer(Netty, module = Application::module).start()
-}
-
-fun Application.module() {
+fun Application.main() {
     install(DefaultHeaders)
     install(Compression)
 

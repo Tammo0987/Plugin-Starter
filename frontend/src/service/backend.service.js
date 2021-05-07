@@ -3,7 +3,7 @@ import store from '@/store';
 
 import { MUTATE_METADATA, MUTATE_PLUGIN, SET_DEPENDENCIES } from '@/store/mutations';
 
-const baseUrl = process.env.BACKEND_API || 'http://127.0.0.1/api';
+const baseUrl = 'https://backend.plugin-starter.com/api';
 
 const client = axios.create({
   baseURL: baseUrl,

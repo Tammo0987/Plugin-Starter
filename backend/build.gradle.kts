@@ -1,11 +1,17 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.21"
+    application
+    kotlin("jvm")
+    id("com.github.johnrengelman.shadow") version "5.0.0"
 }
 
 group = "com.github.plugin"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClassName = "io.ktor.server.netty.EngineMain"
+}
 
 repositories {
     mavenCentral()
@@ -30,4 +36,14 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes(mapOf("Main-Class" to application.mainClassName))
+    }
+
+    archiveBaseName.set("app")
+    archiveVersion.set("")
+    archiveClassifier.set("")
 }
