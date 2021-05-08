@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="widget">
-      <h5>{{ name }}</h5>
+      <h5 class="text-xl">{{ name }}</h5>
     </div>
     <div>
       <dependency

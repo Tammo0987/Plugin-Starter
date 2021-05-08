@@ -31,7 +31,7 @@ class MavenPomGenerateStep : Step() {
                 Dependency(
                     "org.jetbrains.kotlin",
                     "kotlin-stdlib-jdk8",
-                    "1.4.21"
+                    "1.5.0"
                 )
             )
         }
@@ -96,7 +96,7 @@ class MavenPomGenerateStep : Step() {
                 "plugin" {
                     element("groupId", "org.jetbrains.kotlin")
                     element("artifactId", "kotlin-maven-plugin")
-                    element("version", "1.4.21")
+                    element("version", "1.5.0")
 
                     "executions" {
                         "execution" {

@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="flex-1 w-full max-h-full flex flex-col p-2">
-      <h2>Dependencies</h2>
+      <h2 class="pl-2">Dependencies</h2>
       <dependencies />
     </div>
   </div>

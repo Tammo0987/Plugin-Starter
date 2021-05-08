@@ -14,7 +14,7 @@ categories:
       - name: Mockito
         group: org.mockito
         artifact: mockito-core
-        version: 3.7.0
+        version: 3.9.0
         scope: TEST
 
   - name: Utilities
@@ -22,12 +22,12 @@ categories:
       - name: Guava
         group: com.google.guava
         artifact: guava
-        version: 30.1-jre
+        version: 30.1.1-jre
         scope: COMPILE
       - name: Apache Commons
         group: org.apache.commons
         artifact: commons-lang3
-        version: 3.11
+        version: 3.12.0
         scope: COMPILE
 
   - name: Dependency Injection
@@ -35,16 +35,20 @@ categories:
       - name: Guice
         group: com.google.inject
         artifact: guice
-        version: 4.2.3
+        version: 5.0.1
         scope: COMPILE
-      # TODO Spring
+      - name: Spring
+        group: org.springframework
+        artifact: spring-context
+        version: 5.3.6
+        scope: COMPILE
 
   - name: Serialization
     dependencies:
       - name: Jackson
         group: com.fasterxml.jackson.core
         artifact: jackson-core
-        version: 2.12.1
+        version: 2.12.3
         scope: COMPILE
       - name: GSON
         group: com.google.code.gson
@@ -53,5 +57,45 @@ categories:
         scope: COMPILE
 
   - name: Logging
+    dependencies:
+      - name: SLF4J Api
+        group: org.slf4j
+        artifact: slf4j-api
+        version: 1.7.30
+        scope: COMPILE
+      - name: Logback
+        group: ch.qos.logback
+        artifact: logback-classic
+        version: 1.2.3
+        scope: COMPILE
+      - name: Log4j2 Api
+        group: org.apache.logging.log4j
+        artifact: log4j-api
+        version: 2.14.0
+        scope: COMPILE
+      - name: Log4j2 Core
+        group: org.apache.logging.log4j
+        artifact: log4j-core
+        version: 2.14.0
+        scope: COMPILE
+
   - name: HTTP
+    dependencies:
+      - name: Apache Http Client
+        group: org.apache.httpcomponents
+        artifact: httpclient
+        version: 4.5.13
+        scope: COMPILE
+      - name: Ok Http Client
+        group: com.squareup.okhttp3
+        artifact: okhttp
+        version: 4.9.1
+        scope: COMPILE
+
   - name: Database
+    dependencies:
+      - name: Hibernate
+        group: org.hibernate
+        artifact: hibernate-core
+        version: 5.4.31.Final
+

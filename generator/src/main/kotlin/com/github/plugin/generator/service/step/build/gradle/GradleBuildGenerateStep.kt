@@ -63,7 +63,7 @@ class GradleBuildGenerateStep : Step() {
     private fun createLanguagePluginStatement(plugin: Plugin): String {
         return when (plugin.language) {
             Language.JAVA -> "java"
-            Language.KOTLIN -> "kotlin(\"jvm\") version \"1.4.21\""
+            Language.KOTLIN -> "kotlin(\"jvm\") version \"1.5.0\""
         }
     }
 
