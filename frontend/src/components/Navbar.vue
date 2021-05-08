@@ -6,6 +6,6 @@
 
 <style scoped>
 header {
-  @apply p-8 pl-4;
+  @apply p-8 pl-0;
 }
 </style>
